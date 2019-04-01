@@ -1,0 +1,21 @@
+{
+  "name": "geo-tweet",
+  "version": "1.0.0",
+  "description": "A interactive data visualization tool that shows realtime tweets from Twitter based on geolocation.",
+  "main": "app.js",
+  "repository": "https://github.com/romebell/geo-tweet.git",
+  "author": "Rome Bell <contact.romebell@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4",
+    "socket.io": "^2.2.0",
+    "twitter": "^1.7.1",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
+  },
+  "homepage": "https://github.com/romebell/geo-tweet/blob/master/README.md",
+  "engines": {
+    "node": "10.13.0",
+    "yarn": "1.15.2"
+  }
+}
