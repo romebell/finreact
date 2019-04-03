@@ -4,5 +4,6 @@ bundle.js.map
 .DS_Store
 npm-debug.log
 
-access_tokens.js
+
+/config/twitter_credentials.js
 yarn.lock
