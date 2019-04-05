@@ -7,3 +7,4 @@ npm-debug.log
 
 /config/twitter_credentials.js
 yarn.lock
+google_key.js

@@ -10,11 +10,11 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
-app.use(bodyParser.join());
+// app.use(bodyParser.join());
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
-require('./twitter_stream')(app, io);
+// require('./twitter_stream')(app, io);
 
 server.listen(port, () => {
   console.log('server is up');
