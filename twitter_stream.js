@@ -1,1 +1,0 @@
-import * from './config/twitter_credentials';

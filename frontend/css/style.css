@@ -1,0 +1,132 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: #03080b;
+  color: white;
+}
+
+.container {
+  margin: 0 auto;
+  width: 100%;
+  color: white;
+  position: relative;
+}
+
+#map {
+  height: 900px;
+  width: 100%;
+  position: absolute;
+}
+
+.header-container {
+  height: 900px;
+  text-align: left;
+  width: 250px;
+  padding-top: 20px;
+  background-color:rgba(105,105,105,0.2);
+  z-index: 2;
+  position: absolute;
+  float: left;
+  box-sizing: border-box;
+}
+
+h1 {
+  margin-bottom: 15px;
+  padding-left: 12px;
+}
+
+#blurb {
+  margin-bottom: 50px;
+  padding-left: 12px;
+  font-size: 16px;
+}
+
+#about {
+  margin: 30px 0;
+  width: 90%;
+  margin: 0 auto;
+  line-height: 150%;
+  font-size: 14px;
+}
+
+.tweet-container {
+  width: 250px;
+  height: 900px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding-top: 30px;
+  background-color:rgba(105,105,105,0.2);
+  z-index: 2;
+  position: absolute;
+  right: 0;
+  box-sizing: border-box;
+}
+
+#tweet-stream {
+  text-align: left;
+  padding: 0 10px;
+  padding-top: 10px;
+  padding-bottom: 0;
+  font-size: 16px;
+}
+
+ul {
+  list-style: none;
+  padding-left: 10px;
+  padding-top: 0;
+  font-weight: 300;
+  font-size: 14px;
+}
+
+.tweets li {
+  padding-bottom: 20px;
+}
+.info-window {
+  width: 200px;
+  top: 15px;
+  left: 0px;
+  background-color: rgba(105,105,105,0.2);
+}
+
+#content {
+  color: black;
+}
+
+#prof-info {
+  display: flex;
+  flex-direction: row;
+}
+
+#prof-names {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+  padding-top: 5px;
+}
+
+#prof-pic {
+  height: 40px;
+  width: 40px;
+  display: inline-block;
+}
+
+/* The image container that I created. */
+/* .image-container {
+  height: 40px;
+  width: 40px;
+  display: inline-block;
+} */
+
+#name {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+#username {
+  font-weight: 100;
+  font-size: 12px;
+  padding-bottom: 5px;
+}
