@@ -29,35 +29,18 @@
       <div class="tweet-container">
         <div id="tweet-stream">Now streaming:</div>
         <ul class="tweets">
-          <!-- <script>
-            
-            // const socket = io.connect('https://localhost:8000');
-           let socket = io.connect('http://localhost:8000');
-            // let socket = io.connect('https://twitter-pulse.herokuapp.com/');
-            jQuery(function($) {
-              let tweetContent = $('ul.tweets');
-              socket.on('twitter-stream', function(data){
-                tweetContent.prepend('<li>' + '<div id="prof-info">' +
-                  `<img id="prof-pic" src="${data.profile_pic}"/>` + '<div id="prof-names">' +
-                    '<div id="name">' + data.name + '</div>'+
-                    '<div id="username">' + '@' + data.username + '</div>' + '</div>' + '</div>' +
-                    data.text + '</li>');
-                    
-                  });
-                  
-                });
-              </script> -->
               <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
               <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
               <script>
                   let socket = io();
                   let tweetArray = [];
                   let index = 0;
+                  
                   socket.on('connect',function(data){
                      console.log('connected');
                   })
+                  
                   socket.on('tweet', function (tweet) {
-                      // console.log(tweet.tweet);
                       if (tweet.tweet.place != undefined) {
                         let tweetbody = {
                           'text': tweet.tweet.text,
@@ -75,7 +58,6 @@
                       }
                   });
             
-                  
                   socket.on('allTweet', function (tweet) {
                       tweetArray = tweet;
                       loopArray();
@@ -88,8 +70,7 @@
                       let currentTweet = tweetArray[index];
                       let tweetContent = $('ul.tweets');
                       index++;
-                      // console.log(tweetContent);
-                      // console.log(currentTweet);
+
                       tweetContent.prepend('<li>' + '<div id="prof-info">' +
                           `<img id="prof-pic" src="${currentTweet.userImage}"/>` + '<div id="prof-names">' +
                             '<div id="name">' + currentTweet.userScreenName + '</div>'+
@@ -101,75 +82,11 @@
                     }
                     setTimeout(loopArray, 1000);
                   }
-            
-                  /* function loopArray() {
-                    if (tweetArray.length > index) {
-                      $(".img-container").removeClass('noimage');
-                      let currentTweet = tweetArray[index];
-                      index ++;
-                        $('#user-name').html(currentTweet.userScreenName);
-                        $('#user-description').html(currentTweet.userDescription);
-                        $('#content').html(currentTweet.text);
-                        $("#user-image").attr("src", currentTweet.userImage);
-                        if (currentTweet.image) {            
-                          $("#image").attr("src", currentTweet.image);            
-                        } else {
-                           $(".img-container").addClass('noimage');
-                        }
-                    } else {
-                      index = 0;
-                    }
-                    // change back to 10000
-                    setTimeout(loopArray, 5000);
-                  } */
-
-                  /*function loopArray() {
-                    if (tweetArray.length > index) {
-                      $("#prof-pic").removeClass('noimage');
-                      let currentTweet = tweetArray[index];
-                      index ++;
-                        $('#name').html(currentTweet.userScreenName);
-                        $('#user-description').html(currentTweet.userDescription);
-                        $('#content').html(currentTweet.text);
-                        $("#prof-pic").attr("src", currentTweet.userImage);
-                        if (currentTweet.image) {            
-                          $("#image").attr("src", currentTweet.image);            
-                        } else {
-                           $("#prof-pic").addClass('noimage');
-                        }
-                    } else {
-                      index = 0;
-                    }
-                    // change back to 10000
-                    setTimeout(loopArray, 5000);
-                  }*/
-
-
-
-
-                  // added code for the streams to show
-                  jQuery(function($) {
-                    let tweetContent = $('ul.tweets');
-                    // console.log(tweetContent);
-                    socket.on('twitter-stream', function(tweet){
-                      // console.log(tweet);
-                      tweetContent.prepend('<li>' + '<div id="prof-info">' +
-                        `<img id="prof-pic" src="${tweet.tweet.user.profile_image_url_https}"/>` + '<div id="prof-names">' +
-                          '<div id="name">' + tweet.tweet.user.screen_name + '</div>'+
-                          '<div id="username">' + '@' + data.username + '</div>' + '</div>' + '</div>' +
-                          tweet.tweet.text + '</li>');
-                          
-                        });
-                        
-                      });
                 </script>
             </ul>
           </div>
         </div>
       </div>
-      
-      <!-- <script src="/socket.io/socket.io.js"></script> -->
-     
 </body>
 </html>
 
