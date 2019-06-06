@@ -58,7 +58,9 @@ h1 {
   flex-direction: column;
   overflow: hidden;
   padding-top: 30px;
-  background-color:rgba(105,105,105,0.2);
+  background-color:rgba(234, 85, 85, 0.2);
+  /* background-color:rgba(105,105,105,0.2); */
+  /* background-color:red; */
   z-index: 2;
   position: absolute;
   right: 0;

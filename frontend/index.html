@@ -19,11 +19,6 @@
         <h1>Geo Tweet</h1>
         <div id="blurb">Real time tweets from around the world.</div>
         <div id="about">Geo Tweet is a app that streams realtime tweets from Twitter's API and maps the coordinates of where the tweets are posted from. A heatmap is generated based on the concentration of tweets coming from a specific geolocation. Click on the blue dots to read tweets coming in from around the world!</div>
-
-        <!-- <script src="/socket.io/socket.io.js"></script> -->
-        <!-- <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-        <!- <script src="http://localhost:8080/socket.io/socket.io.js"></script> -->
-
       </div>
       
       <div class="tweet-container">
@@ -36,13 +31,11 @@
                   let tweetArray = [];
                   let index = 0;
                   
-                  socket.on('connect',function(data){
-                     console.log('connected');
-                  })
-                  
                   socket.on('tweet', function (tweet) {
+                     console.log('connected inside of tweet');
+                     /* let tweetbody;
                       if (tweet.tweet.place != undefined) {
-                        let tweetbody = {
+                        tweetbody = {
                           'text': tweet.tweet.text,
                           'userScreenName': "@" + tweet.tweet.user.screen_name,
                           'userImage': tweet.tweet.user.profile_image_url_https,
@@ -55,33 +48,66 @@
                           }
                         } catch (err) { }
                         tweetArray.unshift(tweetbody);
-                      }
-                  });
+                      }*/
+                      let currentTweet = tweet.tweet;
+                      let tweetContent = $('ul.tweets');
+                      let screenName = '<div id="name">' + currentTweet.userScreenName + '</div>';
+                      let username = '<div id="username">' + '@' + currentTweet.userScreenName + '</div>';
+                      let userImage = `<img id="prof-pic" src="${currentTweet.userImage}"/>`;
+
+                      tweetContent.prepend(
+                        '<li>' 
+                          + '<div id="prof-info">' 
+                            + userImage 
+                            + '<div id="prof-names">' 
+                              + screenName 
+                              + username 
+                            + '</div>' 
+                          + '</div>' + currentTweet.text + 
+                        '</li>')
+                      // tweetArray.unshift(tweet);
+                      socket.emit('tweetArray', tweetArray)
+                  })
             
-                  socket.on('allTweet', function (tweet) {
+                  /*socket.on('tweetArray', function (tweet) {
+                    console.log('socket.on for tweet inside index.html');
                       tweetArray = tweet;
+                      //console.log(tweetArray);
                       loopArray();
-                      window.tweetArray = tweetArray
-                      console.log(tweetArray)
+                      window.tweetArray = tweetArray;
+                      // console.log(tweetArray);
+                      socket.emit('tweet', tweetArray);
                   });
 
                   function loopArray() {
                     if (tweetArray.length > index) {
                       let currentTweet = tweetArray[index];
                       let tweetContent = $('ul.tweets');
+                      //console.log(currentTweet);
                       index++;
 
-                      tweetContent.prepend('<li>' + '<div id="prof-info">' +
-                          `<img id="prof-pic" src="${currentTweet.userImage}"/>` + '<div id="prof-names">' +
-                            '<div id="name">' + currentTweet.userScreenName + '</div>'+
-                            '<div id="username">' + '@' + currentTweet.userScreenName + '</div>' + '</div>' + '</div>' +
-                            currentTweet.text + '</li>');
+                      let screenName = '<div id="name">' + currentTweet.userScreenName + '</div>';
+                      let username = '<div id="username">' + '@' + currentTweet.userScreenName + '</div>';
+                      let userImage = `<img id="prof-pic" src="${currentTweet.userImage}"/>`;
+
+                      //  console.log(screenName);
+
+                      tweetContent.prepend(
+                        '<li>' 
+                          + '<div id="prof-info">' 
+                            + userImage 
+                            + '<div id="prof-names">' 
+                              + screenName 
+                              + username 
+                            + '</div>' 
+                          + '</div>' + currentTweet.text + 
+                        '</li>');
                       
                     } else {
                       index = 0;
                     }
                     setTimeout(loopArray, 1000);
-                  }
+                  }*/
                 </script>
             </ul>
           </div>

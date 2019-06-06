@@ -1,16 +1,3 @@
-// const express = require('express');
-// const app = express();
-// const server = require('http').Server(app);
-// const io = require('socket.io')(server);
-
-// const Twitter = require('twit');
-// const listener = server.listen(process.env.PORT, function() {
-//   console.log('Your app is listening on port ' + listener.address().port);
-// });
-
-// const io = require('socket.io');s
-// const styledMap = require('./styled-map');
-
 function initMap(){
   
   let styledMapType = new google.maps.StyledMapType(
@@ -405,20 +392,21 @@ function initMap(){
   if (io !== undefined) {
     let socket = io();
     // console.log(socket);
-    socket.on('connect', function(res) {
-      console.log('from on connect', res);
-    });
-    // let socket = io.connect('http://localhost');
-    // let socket = io.connect('https://twitter-pulse.herokuapp.com/');
-    socket.on('allTweet', function(data){
+    // socket.on('connect', function(res) {
+    //   console.log('from on connect', res);
+    // });
+
+    socket.on('tweet', function(data){
       // if (data.hashtags.length > 0) {
       //   let tweetHashtags = data.hashtags.map(tag => {return tag.text;});
       //   tweetHashtagStream.push(tweetHashtags);
       // }
-      let tweetArray = window.tweetArray;
+      // let tweetArray = window.tweetArray;
+      // console.log('showing the data => ' + tweetArray);
 
-      for (let i = 0; i < tweetArray.length; i++) {
-        let currTweet = tweetArray[i];
+      // for (let i = 0; i < tweetArray.length; i++) {
+        let currTweet = data.tweet;
+        
         if (currTweet.coords != undefined) {
           let tweetLocation = new google.maps.LatLng(currTweet.coords[0], currTweet.coords[1]);
           tweetLocationStream.push(tweetLocation);
@@ -448,7 +436,7 @@ function initMap(){
             marker.setMap(null);
           }, 1000);
         }
-      }
+      // }
       });
 
     // socket.on('connect', function(res){

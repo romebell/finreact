@@ -16,32 +16,63 @@ const twitter = new Twitter(config);
 
 io.on('connect', function(socket) {
 
-  twitter.get('search/tweets', { q: '#javascript', count: 1000 }, function(err, data, response) {
+  // twitter.get('search/tweets', { q: 'JavaScript', count: 100, locations:'-180,-90,180,90' }, function(err, data, response) {
 
-    var tweetArray=[];
-      for (let index = 0; index < data.statuses.length; index++) {
-          const tweet = data.statuses[index];
-          let tweetbody = {
-            'text': tweet.text,
-            'userScreenName': "@" + tweet.user.screen_name,
-            'userImage': tweet.user.profile_image_url_https,
-            'userDescription': tweet.user.description,
-          }
-          try {
-            if(tweet.entities.media[0].media_url_https) {
-              tweetbody['image'] = tweet.entities.media[0].media_url_https;
-            }
-          } catch(err) { }
-          tweetArray.push(tweetbody);
-      }     
-      io.emit('allTweet',tweetArray)
-  })
+  //   let tweetArray = [];
+  //   for (let index = 0; index < data.statuses.length; index++) {
+  //       const tweet = data.statuses[index];
+  //       // console.log('this is where I am at');
+        
+  //       // if (tweet.place != undefined) {
+  //         let tweetbody = {
+  //           'text': tweet.text,
+  //           'userScreenName': "@" + tweet.user.screen_name,
+  //           'userImage': tweet.user.profile_image_url_https,
+  //           'userDescription': tweet.user.description,
+  //         }
+  //         try {
+  //           if(tweet.entities.media[0].media_url_https) {
+  //             tweetbody['image'] = tweet.entities.media[0].media_url_https;
+  //           }
+  //         } catch(err) { }
+  //         tweetArray.push(tweetbody);
+  //       // }
+  //   }   
+  //   // console.log(tweetArray);  
+  //   io.emit('allTweet', tweetArray)
+  // });
 
-  var stream = twitter.stream('statuses/filter', { track: '#javascript', language: 'en', locations:'-180,-90,180,90' })
+  var stream = twitter.stream('statuses/filter', { q: 'JavaScript', language: 'en', locations:'-180,-90,180,90' })
 
   stream.on('tweet', function (tweet) {
-      io.emit('tweet',{ 'tweet': tweet });
-  })
+    // console.log(tweet.tweet);
+    // console.log('this is the stream');
+    // console.log(tweet.text);
+    // if (tweet.tweet != undefined) {
+    //   console.log('no real tweet');
+    // }
+    let tweetbody;
+    if (tweet.place != undefined) {
+      tweetbody = {
+        'text': tweet.text,
+        'userScreenName': "@" + tweet.user.screen_name,
+        'userImage': tweet.user.profile_image_url_https,
+        'userDescription': tweet.user.description,
+        'coords': tweet.place.bounding_box.coordinates[0][0]
+      };
+  
+      try {
+        if(tweet.entities.media[0].media_url_https) {
+          tweetbody['image'] = tweet.entities.media[0].media_url_https;
+        }
+      } catch(err) { }
+    }
+    
+
+    
+    io.emit('tweet', { 'tweet': tweetbody });
+    // setTimeout(() => emit, 10000);
+  });
 });
 
 
