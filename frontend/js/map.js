@@ -391,10 +391,6 @@ function initMap(){
 
   if (io !== undefined) {
     let socket = io();
-    // console.log(socket);
-    // socket.on('connect', function(res) {
-    //   console.log('from on connect', res);
-    // });
 
     socket.on('tweet', function(data){
       // if (data.hashtags.length > 0) {
@@ -404,24 +400,21 @@ function initMap(){
       // let tweetArray = window.tweetArray;
       // console.log('showing the data => ' + tweetArray);
 
-      // for (let i = 0; i < tweetArray.length; i++) {
         let currTweet = data.tweet;
-        console.log(currTweet);
+        let profilePic = data.profile_pic
         
         if (currTweet.coords != undefined) {
           let tweetLocation = new google.maps.LatLng(currTweet.coords[1], currTweet.coords[0]);
           tweetLocationStream.push(tweetLocation);
     
           let tweetContent = '<div id="content">' + '<div id="prof-info">' +
-          `<img id="prof-pic" src="${data.profile_pic}"/>` + '<div id="prof-names">' +
-          '<div id="name">' + data.name + '</div>'+
-          '<div id="username">' + '@' + data.username + '</div>' + '</div>' + '</div>' +
-          data.text +
-          '</div>';
+                            `<img id="prof-pic" src="${currTweet.userImage}"/>` + '<div id="prof-names">' +
+                            '<div id="name">' + currTweet.userScreenName + '</div>'+
+                            '<div id="username">' + '@' + currTweet.userScreenName + '</div>' + '</div>' + '</div>' +
+                            currTweet.text +
+                            '</div>';
 
-          // console.log(tweetContent);
-    
-          let infowindow = new google.maps.InfoWindow({
+                            let infowindow = new google.maps.InfoWindow({
             content: tweetContent,
             maxWidth: 150
           });
@@ -437,15 +430,9 @@ function initMap(){
           });
           setTimeout(() => {
             marker.setMap(null);
-          }, 1000);
+          }, 3000);
         }
-      // }
       });
-
-    // socket.on('connect', function(res){
-    //   console.log(res);
-    //   socket.emit('start tweets');
-    // });
   }
 
 }
