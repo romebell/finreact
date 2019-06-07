@@ -406,9 +406,10 @@ function initMap(){
 
       // for (let i = 0; i < tweetArray.length; i++) {
         let currTweet = data.tweet;
+        console.log(currTweet);
         
         if (currTweet.coords != undefined) {
-          let tweetLocation = new google.maps.LatLng(currTweet.coords[0], currTweet.coords[1]);
+          let tweetLocation = new google.maps.LatLng(currTweet.coords[1], currTweet.coords[0]);
           tweetLocationStream.push(tweetLocation);
     
           let tweetContent = '<div id="content">' + '<div id="prof-info">' +
@@ -417,6 +418,8 @@ function initMap(){
           '<div id="username">' + '@' + data.username + '</div>' + '</div>' + '</div>' +
           data.text +
           '</div>';
+
+          // console.log(tweetContent);
     
           let infowindow = new google.maps.InfoWindow({
             content: tweetContent,
