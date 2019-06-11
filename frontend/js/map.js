@@ -409,15 +409,17 @@ function initMap(){
           tweetLocationStream.push(tweetLocation);
     
           let tweetContent = '<div id="content">' + '<div id="prof-info">' +
-                            `<img id="prof-pic" src="${currTweet.userImage}"/>` + '<div id="prof-names">' +
-                            '<div id="name">' + currTweet.name + '</div>'+
+                            `<img id="info-window-profile-pic" src="${currTweet.userImage}"/>` + '<div id="prof-names">' +
+                            '<div id="info-window-name">' + currTweet.name + '</div>'+
                             '<div id="username">' + currTweet.userScreenName + '</div>' + '</div>' + '</div>' +
                             currTweet.text +
                             '</div>';
 
+          // let tweetContent = '<div class="">' + currTweet.name + '</div>';
+
           let infowindow = new google.maps.InfoWindow({
             content: tweetContent,
-            maxWidth: 150
+            maxWidth: 300,
           });
     
           let tweetDot = '../images/dot.png';

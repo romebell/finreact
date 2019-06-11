@@ -24,6 +24,6 @@ socket.on('tweet', function (tweet) {
             + username 
           + '</div>' 
         + '</div>' + currentTweet.text + 
-      '</li>')
-    socket.emit('tweetArray', tweetArray)
+      '</li>');
+    socket.emit('tweetArray', tweetArray);
 });
