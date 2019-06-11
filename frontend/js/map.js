@@ -390,6 +390,7 @@ function initMap(){
 
 
   if (io !== undefined) {
+    console.log('the map is loaded');
     let socket = io();
 
     socket.on('tweet', function(data){
@@ -409,12 +410,12 @@ function initMap(){
     
           let tweetContent = '<div id="content">' + '<div id="prof-info">' +
                             `<img id="prof-pic" src="${currTweet.userImage}"/>` + '<div id="prof-names">' +
-                            '<div id="name">' + currTweet.userScreenName + '</div>'+
-                            '<div id="username">' + '@' + currTweet.userScreenName + '</div>' + '</div>' + '</div>' +
+                            '<div id="name">' + currTweet.name + '</div>'+
+                            '<div id="username">' + currTweet.userScreenName + '</div>' + '</div>' + '</div>' +
                             currTweet.text +
                             '</div>';
 
-                            let infowindow = new google.maps.InfoWindow({
+          let infowindow = new google.maps.InfoWindow({
             content: tweetContent,
             maxWidth: 150
           });
@@ -430,7 +431,7 @@ function initMap(){
           });
           setTimeout(() => {
             marker.setMap(null);
-          }, 3000);
+          }, 7000);
         }
       });
   }
