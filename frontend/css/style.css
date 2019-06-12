@@ -62,6 +62,7 @@ h1 {
   flex-direction: column;
   overflow: hidden;
   padding-top: 20px;
+  margin-right: 20px;
   /* background-color:rgba(234, 85, 85, 0.2); */
   /* background-color:rgba(105,105,105,0.2); */
   /* background-color:red; */
@@ -76,9 +77,9 @@ h1 {
 #tweet-stream {
   text-align: center;
   padding: 0 10px;
-  padding-top: 10px;
+  /* padding-top: 7px; */
   padding-bottom: 0;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: bold;
 }
 
@@ -96,6 +97,7 @@ ul {
   border: 1px solid rgba(105,105,105,0.2);
   border-radius: 5px;
   padding: 5px;
+  background-color: rgba(105,105,105,0.2);
 }
 .info-window {
   width: 200px;
@@ -150,13 +152,14 @@ ul {
 
 #name {
   font-weight: bold;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 #username {
   font-weight: 100;
-  font-size: 12px;
+  font-size: 14px;
   padding-bottom: 5px;
+  color: #4E80FF;
 }
 
 .title-container {
