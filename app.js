@@ -1,3 +1,5 @@
+const path = require('path');
+
 const express = require('express');
 const app = express();
 const server = require('http').Server(app);
@@ -13,6 +15,9 @@ server.listen(process.env.PORT || 5000, function () {
 const config = require('./config/twitter_credentials');
 
 app.use(express.static('frontend'));
+app.get('/', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+});
 
 const twitter = new Twitter(config);
 
