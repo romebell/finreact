@@ -2,28 +2,12 @@ let socket = io();
 let tweetArray = [];
 let index = 0;
 
-// document.getElementsById('alert').addEventListener('click', function() {
-//   alert('hello');
-// });
-
-console.log(document.getElementById("alert"));
-
-function myFunction() {
-  alert ("Hello World!");
-}
-
 socket.on('tweet', function (tweet) {
-  
-  // console.log('connected inside of tweet');
-    
   let currentTweet = tweet.tweet;
-  // console.log(currentTweet);
-  
   let tweetContent = $('ul.tweets');
   let screenName = '<div id="name">' + currentTweet.name + '</div>';
   let username = '<div id="username">' + currentTweet.userScreenName + '</div>';
   let userImage = `<img id="prof-pic" src="${currentTweet.userImage}"/>`;
-  
   
   tweetContent.prepend(
     '<li id="alert">' 
@@ -36,10 +20,4 @@ socket.on('tweet', function (tweet) {
     + '</div>' + currentTweet.text + 
     '</li>');
     socket.emit('tweetArray', tweetArray);
-    
   });
-  
-  
-  // function showProfile () {
-//   alert('Hello');
-// }

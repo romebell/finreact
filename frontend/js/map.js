@@ -394,28 +394,23 @@ function initMap(){
     let socket = io();
 
     socket.on('tweet', function(data){
-      // if (data.hashtags.length > 0) {
-      //   let tweetHashtags = data.hashtags.map(tag => {return tag.text;});
-      //   tweetHashtagStream.push(tweetHashtags);
-      // }
-      // let tweetArray = window.tweetArray;
-      // console.log('showing the data => ' + tweetArray);
-
         let currTweet = data.tweet;
-        let profilePic = data.profile_pic
+        let profilePic = currTweet.userImage;
+        let name = currTweet.name;
+        let username = currTweet.userScreenName;
+        let text = currTweet.text;
+
         
         if (currTweet.coords != undefined) {
           let tweetLocation = new google.maps.LatLng(currTweet.coords[1], currTweet.coords[0]);
           tweetLocationStream.push(tweetLocation);
     
           let tweetContent = '<div id="content">' + '<div id="prof-info">' +
-                            `<img id="info-window-profile-pic" src="${currTweet.userImage}"/>` + '<div id="prof-names">' +
-                            '<div id="info-window-name">' + currTweet.name + '</div>'+
-                            '<div id="username">' + currTweet.userScreenName + '</div>' + '</div>' + '</div>' +
-                            currTweet.text +
+                            `<img id="info-window-profile-pic" src="${profilePic}"/>` + '<div id="prof-names">' +
+                            '<div id="info-window-name">' + name + '</div>'+
+                            '<div id="username">' + username + '</div>' + '</div>' + '</div>' +
+                            text +
                             '</div>';
-
-          // let tweetContent = '<div class="">' + currTweet.name + '</div>';
 
           let infowindow = new google.maps.InfoWindow({
             content: tweetContent,

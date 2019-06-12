@@ -13,13 +13,12 @@ app.use(express.static('frontend'));
 const twitter = new Twitter(config);
 
 function wait(ms) {
-  let date = new Date();
-  let d2 = null;
+  let pastTime = new Date();
+  let presentTime = null;
   do { 
-    d2 = new Date(); 
-    // console.log(date, d2);
+    presentTime = new Date(); 
   }
-  while(d2 - date < ms);
+  while(presentTime - pastTime < ms);
 }
 
 io.on('connect', function(socket) {
@@ -28,12 +27,9 @@ io.on('connect', function(socket) {
   
   
   stream.on('tweet', function (tweet) {
-    // console.log('=========== Beginning =================');
-    // console.log(tweet.user.name);
-    // console.log('=========== End =================');
+
 
     wait(500);
-    // console.log('test');
     let tweetbody;
     if (tweet.place != undefined) {
       tweetbody = {
@@ -47,7 +43,6 @@ io.on('connect', function(socket) {
       
       try {
         if(tweet.entities.media[0].media_url_https) {
-          // console.log(tweet.entities.media[0].media_url_https);
         
           tweetbody['image'] = tweet.entities.media[0].media_url_https;
         }
