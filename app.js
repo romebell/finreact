@@ -3,8 +3,12 @@ const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const Twitter = require('twit');
-const listener = server.listen(process.env.PORT, function() {
-  console.log('Your app is listening on port ' + listener.address().port);
+// const listener = server.listen(process.env.PORT, function() {
+//   console.log('Your app is listening on port ' + listener.address().port);
+// });
+
+server.listen(process.env.PORT || 5000, function () {
+  console.log('Your app is listening on port %d in %s mode', this.address().port, app.settings.env);
 });
 const config = require('./config/twitter_credentials');
 
@@ -27,7 +31,7 @@ io.on('connect', function(socket) {
   stream.on('tweet', function (tweet) {
 
     wait(500);
-    
+
     let tweetbody;
     if (tweet.place != undefined) {
       tweetbody = {
