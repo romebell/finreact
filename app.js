@@ -12,7 +12,7 @@ const Twitter = require('twit');
 server.listen(process.env.PORT || 5000, function () {
   console.log('Your app is listening on port %d in %s mode', this.address().port, app.settings.env);
 });
-const config = require('./config/twitter_credentials');
+const config = require('./config/keys');
 
 app.use(express.static('frontend'));
 app.get('/', (req, res) => {
