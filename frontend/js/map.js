@@ -388,9 +388,7 @@ function initMap(){
   });
   heatmap.setMap(map);
 
-
   if (io !== undefined) {
-    console.log('the map is loaded');
     let socket = io();
 
     socket.on('tweet', function(data){
@@ -399,7 +397,6 @@ function initMap(){
         let name = currTweet.name;
         let username = currTweet.userScreenName;
         let text = currTweet.text;
-
         
         if (currTweet.coords != undefined) {
           let tweetLocation = new google.maps.LatLng(currTweet.coords[1], currTweet.coords[0]);

@@ -22,14 +22,12 @@ function wait(ms) {
 }
 
 io.on('connect', function(socket) {
-  
   var stream = twitter.stream('statuses/filter', { q: 'JavaScript', language: 'en', locations:'-180,-90,180,90' });
-  
   
   stream.on('tweet', function (tweet) {
 
-
     wait(500);
+    
     let tweetbody;
     if (tweet.place != undefined) {
       tweetbody = {
