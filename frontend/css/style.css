@@ -61,7 +61,8 @@ h1 {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  padding-top: 20px;
+  /* padding-top: 20px; */
+  margin-top: -30px;
   margin-right: 20px;
   /* background-color:rgba(234, 85, 85, 0.2); */
   /* background-color:rgba(105,105,105,0.2); */
@@ -241,3 +242,15 @@ ul {
     float: none;
   }
 } 
+
+#header {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  /* width: 300px; */
+  z-index: 2;
+  font-size: 32px;
+  font-weight: bold;
+  /* box-sizing: border-box; */
+}
