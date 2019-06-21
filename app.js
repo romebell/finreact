@@ -9,9 +9,9 @@ const listener = server.listen(process.env.PORT, function() {
   console.log('Your app is listening on port ' + listener.address().port);
 });
 
-server.listen(process.env.PORT || 5000, function () {
-  console.log('Your app is listening on port %d in %s mode', this.address().port, app.settings.env);
-});
+// server.listen(process.env.PORT || 5000, function () {
+//   console.log('Your app is listening on port %d in %s mode', this.address().port, app.settings.env);
+// });
 const config = require('./config/keys');
 
 app.use('/', express.static('frontend'));
