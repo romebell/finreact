@@ -5,16 +5,16 @@ const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const Twitter = require('twit');
-// const listener = server.listen(process.env.PORT, function() {
-//   console.log('Your app is listening on port ' + listener.address().port);
-// });
+const listener = server.listen(process.env.PORT, function() {
+  console.log('Your app is listening on port ' + listener.address().port);
+});
 
 server.listen(process.env.PORT || 5000, function () {
   console.log('Your app is listening on port %d in %s mode', this.address().port, app.settings.env);
 });
 const config = require('./config/keys');
 
-app.use(express.static('frontend'));
+app.use('/', express.static('frontend'));
 app.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'index.html'));
 });
@@ -31,7 +31,7 @@ function wait(ms) {
 }
 
 io.on('connect', function(socket) {
-  var stream = twitter.stream('statuses/filter', { q: 'JavaScript', language: 'en', locations:'-180,-90,180,90' });
+  let stream = twitter.stream('statuses/filter', { q: 'JavaScript', language: 'en', locations:'-180,-90,180,90' });
   
   stream.on('tweet', function (tweet) {
 
