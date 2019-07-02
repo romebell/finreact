@@ -17,3 +17,7 @@ Technologies
 - Google Maps API
 - Heroku
 - Socket.io
+
+
+Bonus Features (future)
+Add a link to each dot click on to route to the tweet's profile page.
